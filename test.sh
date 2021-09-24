@@ -34,7 +34,7 @@ service mysql-server start
 mysql -u root -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '${mysqlroot}';CREATE DATABASE guacamole_db;CREATE USER 'guacamole_user'@'localhost' IDENTIFIED BY '${guacamole_password}';GRANT SELECT,INSERT,UPDATE,DELETE ON guacamole_db.* TO 'guacamole_user'@'localhost';FLUSH PRIVILEGES;";
 
 
-cat /tmp/guacamole-auth-jdbc-*/mysql/schema/*.sql | mysql -u root -p"$mysqlroot" guacamole_db
+cat /tmp/guacamole-auth-jdbc-*/mysql/schema/*.sql | mysql -u root -p'${mysqlroot}' guacamole_db
 
 
 service mysql-server restart
