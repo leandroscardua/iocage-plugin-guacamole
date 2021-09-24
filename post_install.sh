@@ -1,24 +1,24 @@
 #!/bin/sh
 
-#generate random password for root and guacamole db user
+# Generate random password for root and guacamole db user
 mysqlroot=$(openssl rand -base64 15)
 guacamole_password=$(openssl rand -base64 15)
 
-# add services to startup
+# Add services to startup
 echo 'guacd_enable="YES"' >> /etc/rc.conf
 echo 'tomcat9_enable="YES"' >> /etc/rc.conf
 echo 'mysql_enable="YES"' >> /etc/rc.conf
 
-#create folder structure
+# Create folder structure
 mkdir /usr/local/etc/guacamole-client/lib
 mkdir /usr/local/etc/guacamole-client/extensions
 
-# extract java connector to guacamole
+# Extract java connector to guacamole
 cp /usr/local/share/java/classes/mysql-connector-java.jar /usr/local/etc/guacamole-client/lib
 tar xvfz /usr/local/share/guacamole-client/guacamole-auth-jdbc.tar.gz -C /tmp/
 cp /tmp/guacamole-auth-jdbc-*/mysql/*.jar /usr/local/etc/guacamole-client/extensions
 
-# configure guacamole server file
+# Configure guacamole server file
 cp /usr/local/etc/guacamole-server/guacd.conf.sample /usr/local/etc/guacamole-server/guacd.conf
 cp /usr/local/etc/guacamole-client/logback.xml.sample /usr/local/etc/guacamole-client/logback.xml
 cp /usr/local/etc/guacamole-client/guacamole.properties.sample /usr/local/etc/guacamole-client/guacamole.properties
