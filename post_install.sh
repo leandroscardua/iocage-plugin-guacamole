@@ -46,20 +46,18 @@ service mysql-server restart
 service guacd restart
 service tomcat9 restart
 
-echo "$mysqlroot"
-echo "$guacamole_password"
-
 echo
 cat <<EOF > /root/PLUGIN_INFO
 #---------------------------------------------------------------------#
 # Getting started with the AdGuard Home plugin
 #---------------------------------------------------------------------#
-AdGuard Home is a network-wide software for blocking ads & tracking. 
-After you set it up, it'll cover ALL your home devices, 
-and you don't need any client-side software for that.
-Source: https://github.com/AdguardTeam/AdGuardHome
+Apache Guacamole is a clientless remote desktop gateway. 
+It supports standard protocols like VNC, RDP, and SSH.
+Because the Guacamole client is an HTML5 web application, 
+use of your computers is not tied to any one device or location
+Source: https://guacamole.apache.org/
  
-The default user for the Admin Portal is "admin" with password "admin"
+The default user for the Admin Portal is "guacadmin" with password "guacadmin"
 MySQL Username: root
 MySQL Password: "$mysqlroot"
 Guacamole DB User: guacamole_user
