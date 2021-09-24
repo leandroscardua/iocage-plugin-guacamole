@@ -48,3 +48,24 @@ service tomcat9 restart
 
 echo "$mysqlroot"
 echo "$guacamole_password"
+
+echo
+cat <<EOF > /root/PLUGIN_INFO
+#---------------------------------------------------------------------#
+# Getting started with the AdGuard Home plugin
+#---------------------------------------------------------------------#
+AdGuard Home is a network-wide software for blocking ads & tracking. 
+After you set it up, it'll cover ALL your home devices, 
+and you don't need any client-side software for that.
+Source: https://github.com/AdguardTeam/AdGuardHome
+ 
+The default user for the Admin Portal is "admin" with password "admin"
+MySQL Username: root
+MySQL Password: "$mysqlroot"
+Guacamole DB User: guacamole_user
+Guacamole DB Password: "$guacamole_password"
+
+EOF
+
+
+
