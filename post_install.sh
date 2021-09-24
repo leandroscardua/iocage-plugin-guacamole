@@ -28,6 +28,9 @@ cp /usr/local/etc/guacamole-client/logback.xml.sample /usr/local/etc/guacamole-c
 
 cp /usr/local/etc/guacamole-client/guacamole.properties.sample /usr/local/etc/guacamole-client/guacamole.properties
 
+# Change default port Tomcat
+sed -i -e 's/"8080"/"8085"/g' /usr/local/apache-tomcat-9.0/conf/server.xml
+
 echo "mysql-hostname: localhost" >> /usr/local/etc/guacamole-client/guacamole.properties
 echo "mysql-port:     3306" >> /usr/local/etc/guacamole-client/guacamole.properties
 echo "mysql-database: guacamole_db" >> /usr/local/etc/guacamole-client/guacamole.properties
@@ -38,9 +41,7 @@ service mysql-server start
 
 mysql -u root -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '${mysqlroot}';CREATE DATABASE guacamole_db;CREATE USER 'guacamole_user'@'localhost' IDENTIFIED BY '${guacamole_password}';GRANT SELECT,INSERT,UPDATE,DELETE ON guacamole_db.* TO 'guacamole_user'@'localhost';FLUSH PRIVILEGES;";
 
-
 cat /tmp/guacamole-auth-jdbc-*/mysql/schema/*.sql | mysql -u root -p"${mysqlroot}" guacamole_db
-
 
 service mysql-server restart
 service guacd restart
