@@ -31,15 +31,8 @@ cp /usr/local/etc/guacamole-client/guacamole.properties.sample /usr/local/etc/gu
 
 service mysql-server start
 
-mysql -u root
+mysql -u root -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '${mysqlroot}';CREATE DATABASE guacamole_db;CREATE USER 'guacamole_user'@'localhost' IDENTIFIED BY '${guacamole_password}';GRANT SELECT,INSERT,UPDATE,DELETE ON guacamole_db.* TO 'guacamole_user'@'localhost';FLUSH PRIVILEGES;";
 
-ALTER USER 'root'@'localhost' IDENTIFIED BY '$mysqlroot';
-CREATE DATABASE guacamole_db;
-CREATE USER 'guacamole_user'@'localhost' IDENTIFIED BY '$guacamole_password';
-GRANT SELECT,INSERT,UPDATE,DELETE ON guacamole_db.* TO 'guacamole_user'@'localhost';
-FLUSH PRIVILEGES;
-quit
-ls
 
 cat /tmp/guacamole-auth-jdbc-*/mysql/schema/*.sql | mysql -u root -p$mysqlroot guacamole_db
 
@@ -47,3 +40,6 @@ cat /tmp/guacamole-auth-jdbc-*/mysql/schema/*.sql | mysql -u root -p$mysqlroot g
 service mysql-server restart
 service guacd restart
 service tomcat9 restart
+
+echo "$mysqlroot"
+echo "$guacamole_password"
