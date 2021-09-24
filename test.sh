@@ -28,6 +28,11 @@ cp /usr/local/etc/guacamole-client/logback.xml.sample /usr/local/etc/guacamole-c
 
 cp /usr/local/etc/guacamole-client/guacamole.properties.sample /usr/local/etc/guacamole-client/guacamole.properties
 
+echo "mysql-hostname: localhost" >> /usr/local/etc/guacamole-client/guacamole.properties
+echo "mysql-port:     3306" >> /usr/local/etc/guacamole-client/guacamole.properties
+echo "mysql-database: guacamole_db" >> /usr/local/etc/guacamole-client/guacamole.properties
+echo "mysql-username: guacamole_user" >> /usr/local/etc/guacamole-client/guacamole.properties
+echo "mysql-password: $guacamole_password" >> /usr/local/etc/guacamole-client/guacamole.properties
 
 service mysql-server start
 
