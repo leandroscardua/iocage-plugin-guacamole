@@ -3,10 +3,10 @@
 mysqlroot=$(openssl rand -base64 15)
 guacamole_password=$(openssl rand -base64 15)
 
-pkg install guacamole-server
-pkg install guacamole-client
-pkg install mysql80-server
-pkg install mysql-connector-java
+pkg install -y guacamole-server
+pkg install -y guacamole-client
+pkg install -y mysql80-server
+pkg install -y mysql-connector-java
 
 
 echo 'guacd_enable="YES"' >> /etc/rc.conf
