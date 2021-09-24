@@ -4,12 +4,7 @@
 mysqlroot=$(openssl rand -base64 15)
 guacamole_password=$(openssl rand -base64 15)
 
-pkg install -y guacamole-server
-pkg install -y guacamole-client
-pkg install -y mysql80-server
-pkg install -y mysql-connector-java
-
-# add service to startup
+# add services to startup
 echo 'guacd_enable="YES"' >> /etc/rc.conf
 echo 'tomcat9_enable="YES"' >> /etc/rc.conf
 echo 'mysql_enable="YES"' >> /etc/rc.conf
@@ -53,7 +48,7 @@ service tomcat9 restart
 echo
 cat <<EOF > /root/PLUGIN_INFO
 #---------------------------------------------------------------------#
-# Getting started with the AdGuard Home plugin
+# Getting started with the Guacamole plugin
 #---------------------------------------------------------------------#
 Apache Guacamole is a clientless remote desktop gateway. 
 It supports standard protocols like VNC, RDP, and SSH.
