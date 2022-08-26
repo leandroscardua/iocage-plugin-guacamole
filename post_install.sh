@@ -26,6 +26,9 @@ cp /usr/local/etc/guacamole-client/guacamole.properties.sample /usr/local/etc/gu
 # Change default port Tomcat
 sed -i -e 's/"8080"/"8085"/g' /usr/local/apache-tomcat-9.0/conf/server.xml
 
+# Change default bind host ip
+sed -i -e 's/'localhost'/'0.0.0.0'/g' /usr/local/etc/guacamole-server/guacd.conf
+
 # Add database connection
 echo "mysql-hostname: localhost" >> /usr/local/etc/guacamole-client/guacamole.properties
 echo "mysql-port:     3306" >> /usr/local/etc/guacamole-client/guacamole.properties
