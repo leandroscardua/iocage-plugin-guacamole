@@ -14,7 +14,7 @@ mkdir /usr/local/etc/guacamole-client/lib
 mkdir /usr/local/etc/guacamole-client/extensions
 
 # Extract java connector to guacamole
-cp /usr/local/share/java/classes/mysql-connector-java.jar /usr/local/etc/guacamole-client/lib
+cp /usr/local/share/java/classes/mysql-connector-j.jar /usr/local/etc/guacamole-client/lib/mysql-connector-java.jar
 tar xvfz /usr/local/share/guacamole-client/guacamole-auth-jdbc.tar.gz -C /tmp/
 cp /tmp/guacamole-auth-jdbc-*/mysql/*.jar /usr/local/etc/guacamole-client/extensions
 
@@ -53,12 +53,12 @@ cat <<EOF > /root/PLUGIN_INFO
 #---------------------------------------------------------------------#
 # Getting started with the Guacamole plugin
 #---------------------------------------------------------------------#
-Apache Guacamole is a clientless remote desktop gateway. 
+Apache Guacamole is a clientless remote desktop gateway.
 It supports standard protocols like VNC, RDP, and SSH.
-Because the Guacamole client is an HTML5 web application, 
+Because the Guacamole client is an HTML5 web application,
 use of your computers is not tied to any one device or location
 Source: https://guacamole.apache.org/
- 
+
 The default user for the Admin Portal is "guacadmin" with password "guacadmin"
 MySQL Username: root
 MySQL Password: "$mysqlroot"
